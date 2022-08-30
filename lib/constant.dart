@@ -16,3 +16,27 @@ const KNumberStyle =  TextStyle(
     fontSize: 40.0,
     fontWeight: FontWeight.w900
 );
+
+const kCalculateButton= TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+const kResultTextStyle = TextStyle(
+  fontSize: 38.0,
+  fontWeight: FontWeight.bold,
+  // color: Colors.greenAccent,
+);
+const kCalculateTextStyle = TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.greenAccent,
+);
+
+const kBmiTextStyle = TextStyle(
+  fontSize: 64.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kcalculatorBodyTextStyle = TextStyle(
+  fontSize: 20.0,
+);

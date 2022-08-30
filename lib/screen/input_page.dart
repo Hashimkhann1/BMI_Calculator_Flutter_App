@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; //font_awesome_Icon
-import 'icon_content.dart'; // file
-import 'reusable_card.dart'; //file
-import 'constant.dart'; //file
+import '../components/icon_content.dart'; // file
+import '../components/reusable_card.dart'; //file
+import '../constant.dart'; //file
+import '../components/round_icon_button.dart'; //file
+import '../screen/result_page.dart'; //file
+import '../components/buttom_buttom.dart';
+import 'package:bmi_calculator/calculator-brain.dart';
 
 
 
@@ -41,7 +45,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(child: Row(
             children: <Widget>[
               Expanded(
-                  child: ReuableCard(
+                  child: ReusableCard(
                     onTap: () => {
                       setState(() {
                         selectedGender = Gender.male;
@@ -52,7 +56,7 @@ class _InputPageState extends State<InputPage> {
                   ),
               ),
               Expanded(
-                  child: ReuableCard(
+                  child: ReusableCard(
                     onTap: () => {
                       setState(() {
                         selectedGender = Gender.female;
@@ -65,7 +69,7 @@ class _InputPageState extends State<InputPage> {
             ],
           )),
           Expanded(
-            child: ReuableCard(
+            child: ReusableCard(
                 colour: kAtiveCardColour,
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +119,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(child: Row(
             children: <Widget>[
               Expanded(
-                child: ReuableCard(
+                child: ReusableCard(
                     colour: kAtiveCardColour,
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +162,7 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               Expanded(
-                  child: ReuableCard(
+                  child: ReusableCard(
                       colour: kAtiveCardColour,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -201,39 +205,20 @@ class _InputPageState extends State<InputPage> {
               )
             ],
           )),
-          Container(
-            color: kBottomContaierColor,
-            margin: const EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBodyBottomContainer,
+          ButtomButton(
+            buttomTitle: 'CALCULATE',
+            onTap:  (){
+              CalculatorBrain calc = CalculatorBrain(height, weight);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ResutsPage(
+                bmiResult: calc.calculateBMI(),
+                resultText: calc.getResult(),
+                interpretation: calc.getInterpretation(),
+              ),
+              ),);
+            },
           )
         ],
       )
     );
   }
 }
-
-
-class RoundIconbutton extends StatelessWidget {
-
-  RoundIconbutton({@required this.icon , @required this.onTap});
-
-  final IconData? icon;
-  final  VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onTap,
-      elevation: 10.0,
-      constraints: BoxConstraints.tightFor(
-        width: 44.0,
-        height: 44.0
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-    );
-  }
-}
-
